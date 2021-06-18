@@ -7,8 +7,17 @@ terraform {
       version = "3.0.1"
     }
   }
-  required_version = "~> 0.14"
+  required_version = ">= 0.14"
+  backend "remote" {
+    hostname      = "app.terraform.io"
+    organization  = "0Downtime"
+
+    workspaces {
+      name = "state-migration"
+    }
+  }
 }
+
 
 variable "name_length" {
   description = "The number of words in the pet name"
